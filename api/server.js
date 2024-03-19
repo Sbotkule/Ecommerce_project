@@ -30,16 +30,16 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json());
 
 // ROUTES
-app.use('/users', userRoutes);
-app.use('/categories', categoryRoutes);
-app.use('/genres', genreRoutes);
-app.use('/products', productRoutes);
-app.use('/ratings', ratingRoutes);
-app.use('/comments', commentRoutes);
-app.use('/orders', orderRoutes);
-app.use('/reports', reportRoutes);
-app.use('/images', imageRoutes);
-app.use('/minis', miniImageRoutes);
+app.use('/user/users', userRoutes);
+app.use('/user/categories', categoryRoutes);
+app.use('/user/genres', genreRoutes);
+app.use('/user/products', productRoutes);
+app.use('/user/ratings', ratingRoutes);
+app.use('/user/comments', commentRoutes);
+app.use('/user/orders', orderRoutes);
+app.use('/user/reports', reportRoutes);
+app.use('/user/images', imageRoutes);
+app.use('/user/minis', miniImageRoutes);
 
 // STRIPE CONNECTION
 app.post("/create-payment-intent", async (req, res) => {
