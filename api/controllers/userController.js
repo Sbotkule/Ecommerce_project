@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 exports.getAllUsers = async (req, res) => {
     try {
@@ -17,7 +19,7 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUserById = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).select('-password');
+        const user = await User.findById(new ObjectId(req.params.id)).select('-password');
 
         res.status(200).json({
             user
@@ -32,7 +34,7 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true }).select('-password');
+        const user = await User.findByIdAndUpdate(new ObjectId(req.params.id), req.body, { new: true }).select('-password');
 
         res.status(200).json({
             user
@@ -47,7 +49,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
-        const user = await User.findByIdAndDelete(req.params.id);
+        const user = await User.findByIdAndDelete(new ObjectId(req.params.id));
 
         res.status(200).json({
             user
@@ -64,7 +66,7 @@ exports.deleteUser = async (req, res) => {
 
 exports.addFavorite = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(new ObjectId(req.params.id));
         var isFavorite = false;
         const favoriteArray = [];
 
@@ -99,7 +101,7 @@ exports.addFavorite = async (req, res) => {
 
 exports.deleteFavorite = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id);
+        const user = await User.findById(new ObjectId(req.params.id));
 
         const favoritesArray = []
 
